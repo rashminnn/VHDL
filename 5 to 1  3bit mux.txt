@@ -1,0 +1,44 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity Rashmin is 
+
+port(
+
+SW: IN std_logic_vector(17 downto 0);
+LEDG : OUT std_logic_vector(2 downto 0)
+
+);
+
+End Rashmin ;
+
+Architecture Behaviour of Rashmin is 
+signal sele: std_logic_vector(2 downto 0);
+signal SWA: std_logic_vector(2 downto 0);
+signal SWB: std_logic_vector(2 downto 0);
+signal SWC: std_logic_vector(2 downto 0);
+signal SWD: std_logic_vector(2 downto 0);
+signal SWE: std_logic_vector(2 downto 0);
+begin 
+ sele<= SW(17 downto 15);
+ SWA<= SW(2 downto 0);
+ SWB<= SW(5 downto 3);
+ SWC<= SW(8 downto 6);
+ SWD<=SW(11 downto 9);
+ SWE<=SW(14 downto 12);
+
+process(sele)
+begin
+case (sele) is
+when "000" => LEDG <= SWA;
+when "001" => LEDG <= SWB;
+when "010" => LEDG <= SWC;
+when "011" => LEDG <= SWD;
+when "100" => LEDG <= SWE;
+
+when others => LEDG <= SWE;
+
+end case;
+end process;
+
+end Behaviour;
